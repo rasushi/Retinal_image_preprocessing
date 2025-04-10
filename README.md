@@ -8,7 +8,8 @@ Retinal_image_preprocessing/
  ├── DRIVE/ # Folder containing the DRIVE dataset 
  │ ├── training/ # Training images, masks, ROI masks 
  │ ├── test/ # Testing images, ROI masks 
- ├── preprocessing_DRIVE.ipynb # Master notebook for DRIVE dataset preprocessing 
+ ├── preprocessing_DRIVE.ipynb # notebook for DRIVE dataset preprocessing 
+ ├── preprocessing.ds.ipynb   #  Dataset-wise preprocessing (STARE, CHASE_DB1)
  ├── STARE/ # (Downloaded dataset - code not yet integrated) 
  ├── CHASE_DB1/ # (Downloaded dataset - code not yet integrated) 
  └── README.md # Project documentation
@@ -17,8 +18,11 @@ Retinal_image_preprocessing/
 
 Currently, the repository contains:
 -preprocessing_DRIVE.ipynb -a notebook containing fully functional code for preprocessing the DRIVE dataset(training and test sets).
+-preprocessing_ds.ipynb: A unified notebook that preprocesses all three datasets — DRIVE, STARE, and CHASE_DB1 — using dataset-specific logic.
 
-## What the Code Does
+
+
+## What the Code Does(preprocessing_DRIVE.ipynb)
 
 The preprocessing code performs the following tasks:
 
@@ -29,6 +33,17 @@ The preprocessing code performs the following tasks:
 5. **Resizes all images** to a uniform shape (`512x512`).
 6. **Loads and binarizes ground truth masks** (for training images).
 7. Provides a **visualization utility** to compare original vs preprocessed images and masks.
+
+## What the Code Does(preprocessing_ds.ipynb)
+The preprocessing pipeline includes:
+
+1. **Loads fundus images from DRIVE, STARE, and CHASE_DB1 datasets.**
+2. **Applies ROI masking where available** (like DRIVE).
+3. **Converts to grayscale**.
+4. **Enhances contrast using CLAHE**(Contrast Limited Adaptive Histogram Equalization).
+5. **Resizes images to 512x512**.
+6. **Loads and binarizes ground truth masks**, if available (for training imagese.g., DRIVE, CHASE_DB1).
+7. **Displays visual comparisons** between original and preprocessed images.
 
 
 ## Technologies Used
@@ -44,7 +59,6 @@ The preprocessing code performs the following tasks:
 
 ## Coming Up
 
-- Add preprocessing support for **STARE** and **CHASE_DB1** datasets.
 - Implement advanced preprocessing techniques (e.g., vessel enhancement filters).
 - Prepare preprocessed data for training segmentation models.
 
